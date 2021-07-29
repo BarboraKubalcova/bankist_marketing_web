@@ -33,6 +33,60 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+//Button scrolling
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  /*
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+  console.log(e.target.getBoundingClientRect());
+  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+  */
+  // scroll to section
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  // modern way
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+// Page navigation
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+// event delegation
+// 1. Add event listener to common parent element
+// 2. Determine what elemet originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  // Matching strategy
+  e.preventDefault();
+  if (e.target.classList.contains('nav__link')) {
+    // only buttons with class nav__link selected
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
 ////////////////////////////////////////////////
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
@@ -122,4 +176,41 @@ logo.classList.add('c');
 logo.classList.remove('c');
 logo.classList.toggle('c');
 logo.classList.contains('c'); // not includes
+*/
+
+// TYPES OF EVENTS AND EVENT HANDLER
+/*
+const alertH1 = function (e) {
+  alert('addEventListener: Great');
+  //h1.removeEventListener('mouseenter', alertH1); // remove event handler
+};
+const h1 = document.querySelector('h1');
+h1.addEventListener('mouseenter', alertH1);
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+
+//  h1.onmouseenter = function (e) {
+//   alert('addEventListener: Perfect');
+// };
+*/
+/*
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+console.log(randomColor(0, 255));
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('Link ', e.target, e.currentTarget);
+  // stop propagation
+  // e.stopPropagation(); // not good in practise
+});
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('Container ', e.target, e.currentTarget);
+});
+document.querySelector('.nav').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('Nav ', e.target, e.currentTarget);
+});
 */
