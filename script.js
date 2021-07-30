@@ -190,6 +190,27 @@ allSections.forEach(function (section) {
   section.classList.add('section--hidden');
 });
 
+// Lazy loading images
+const imgTargets = document.querySelectorAll('img[data-src]');
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+  //console.log(entry);
+  if (!entry.isIntersecting) return;
+  // replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  treshold: 0,
+  rootMargin: '500px',
+});
+imgTargets.forEach(img => imgObserver.observe(img));
+
 /*
 const allButtons = document.getElementsByTagName('button');
 // select all buttons. It returns HTML colection = live colection
