@@ -87,6 +87,30 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
+// TABBED COMPONENT
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+//tabs.forEach(t => t.addEventListener('click', () => console.log('TAB')));
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  // closest find the closest parent element with operations__tab classname
+
+  //guard clause
+  if (!clicked) return;
+
+  // Active tab
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  // Active content area
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
 ////////////////////////////////////////////////
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
@@ -212,5 +236,42 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 document.querySelector('.nav').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor();
   console.log('Nav ', e.target, e.currentTarget);
+});
+*/
+/*
+// DOM TRAVERSING
+// H1 element
+const h1 = document.querySelector('h1');
+// going downwards: child
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes);
+console.log(h1.children);
+console.log();
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'orangered';
+
+// going upwards: parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+//selected closest element with class header
+h1.closest('.header').style.background = 'var(--gradient-secondary)'; // receive query string
+h1.closest('h1').style.background = 'var(--gradient-primary)'; // receive query string
+// first child element finds children no matter how deep in DOM tree
+// closest element finds closest parent element
+
+// going sideways
+// in js its possible to select just previous and next sibling
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling); // h4
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+// if we want to select all siblings, we have to go to parent element
+// and select all childrens
+
+console.log(h1.parentElement.children); // html colection
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = 'scale(0.5)';
 });
 */
