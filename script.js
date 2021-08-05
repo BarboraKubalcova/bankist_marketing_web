@@ -455,7 +455,7 @@ console.log(h1.parentElement.children); // html colection
   if (el !== h1) el.style.transform = 'scale(0.5)';
 });
 */
-
+/*
 document.addEventListener('DOMContentLoaded', function (e) {
   console.log('HTML parsed and DOM tree built');
 });
@@ -463,9 +463,10 @@ document.addEventListener('DOMContentLoaded', function (e) {
 window.addEventListener('load', function (e) {
   console.log('Page fully loaded', e);
 });
-
-window.addEventListener('beforeunload', function (e) {
+ */
+/* window.addEventListener('beforeunload', function (e) {
   e.preventDefault();
   console.log(e);
   e.returnValue = '';
-}); // ask if we really want to leave the site
+}); // ask if we really want to leave the site */
+
